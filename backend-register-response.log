@@ -1,0 +1,11 @@
+﻿{
+    "success":  true,
+    "message":  "Registrasi Berhasil",
+    "user":  {
+                 "id":  1,
+                 "username":  "cline_test_user",
+                 "email":  "cline_test_user@example.com",
+                 "created_at":  "2026-09-15T13:17:55.051Z",
+                 "updated_at":  "2026-09-15T13:17:55.051Z"
+             }
+}
