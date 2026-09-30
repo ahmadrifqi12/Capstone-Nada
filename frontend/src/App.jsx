@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import Login from "./pages/login";
 import Register from "./pages/register";
 
-function LandingPage({ onGoToLogin }) {
+function LandingPage() {
   const navItems = [
     "26°RHAPSODY",
     "SUMMER MARCHÉ VOL. 2",
@@ -23,22 +23,29 @@ function LandingPage({ onGoToLogin }) {
             nada.
           </button>
           <div className="header-actions">
-            <button
+            <Link
+              to="/login"
               className="icon-button account-button"
-              type="button"
               aria-label="Open login and register page"
-              onClick={onGoToLogin}
             >
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 12.2c2.3 0 4.2-1.9 4.2-4.2S14.3 3.8 12 3.8 7.8 5.7 7.8 8s1.9 4.2 4.2 4.2Zm0 2.1c-3.6 0-6.8 2.1-8.2 5.2-.2.4.1.8.5.8h15.4c.4 0 .7-.4.5-.8-1.4-3.1-4.6-5.2-8.2-5.2Z" />
               </svg>
-            </button>
-            <button className="icon-button decorative-icon" type="button" aria-label="Search">
+            </Link>
+            <button
+              className="icon-button decorative-icon"
+              type="button"
+              aria-label="Search"
+            >
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="m20.3 19-4.6-4.6c1-1.2 1.5-2.7 1.5-4.3 0-3.9-3.1-7-7-7s-7 3.1-7 7 3.1 7 7 7c1.6 0 3.1-.5 4.3-1.5l4.6 4.6 1.2-1.2ZM5 10.1C5 7.2 7.3 4.9 10.2 4.9s5.2 2.3 5.2 5.2-2.3 5.2-5.2 5.2S5 13 5 10.1Z" />
               </svg>
             </button>
-            <button className="icon-button decorative-icon" type="button" aria-label="Bag">
+            <button
+              className="icon-button decorative-icon"
+              type="button"
+              aria-label="Bag"
+            >
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M7 8.2V7c0-2.8 2.2-5 5-5s5 2.2 5 5v1.2h2.1l1 13.8H3.9l1-13.8H7Zm1.8 0h6.4V7c0-1.8-1.4-3.2-3.2-3.2S8.8 5.2 8.8 7v1.2Zm-2.2 1.7-.7 10.3h12.2l-.7-10.3H6.6Z" />
               </svg>
@@ -72,7 +79,9 @@ function LandingPage({ onGoToLogin }) {
         </div>
 
         <div className="hero-copy">
-          <p className="summer-title">SUMMER ☼ MARCHÉ <span>VOL. 2</span></p>
+          <p className="summer-title">
+            SUMMER ☼ MARCHÉ <span>VOL. 2</span>
+          </p>
           <h1>26°RHAPSODY</h1>
           <div className="hero-links">
             <button type="button">Lookbook</button>
@@ -90,15 +99,13 @@ function LandingPage({ onGoToLogin }) {
   );
 }
 
-function App(){
-  const [page, setPage] = useState("home");
-
-  return(
-    <>
-      {page === "home" && <LandingPage onGoToLogin={() => setPage("login")} />}
-      {page === "login" && <Login onGoToRegister={() => setPage("register")} />}
-      {page === "register" && <Register onGoToLogin={() => setPage("login")} />}
-    </>
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+    </Routes>
   );
 }
 

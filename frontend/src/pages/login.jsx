@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function Login({ onGoToRegister }) {
+function Login() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [pesan, setPesan] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -34,6 +36,7 @@ function Login({ onGoToRegister }) {
       if (response.ok) {
         localStorage.setItem("user", JSON.stringify(data.user));
         setPesan(`Selamat datang, ${data.user.username}!`);
+        navigate("/");
       } else {
         setPesan(data.message || "Login gagal");
       }
@@ -46,7 +49,9 @@ function Login({ onGoToRegister }) {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", textAlign: "center" }}>
+    <div
+      style={{ maxWidth: "400px", margin: "50px auto", textAlign: "center" }}
+    >
       <h1>Login</h1>
 
       <form onSubmit={handleLogin}>
@@ -80,10 +85,7 @@ function Login({ onGoToRegister }) {
       {pesan && <p>{pesan}</p>}
 
       <p>
-        Belum punya akun?{" "}
-        <button type="button" onClick={onGoToRegister}>
-          Daftar
-        </button>
+        Belum punya akun? <Link to="/register">Daftar</Link>
       </p>
     </div>
   );
